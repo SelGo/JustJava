@@ -20,12 +20,21 @@ public class MainActivity extends Activity {
 	     * This method is called when the order button is clicked.
 	     */
 	    public void submitOrder(View view) {
-	    	int price = quantity * 5;
+            int price = calculatePrice();
 	    	String priceMessage = "Total: $" + price;
 	    	String priceMessage2 = priceMessage + "\nThank You!";
 	    	
 	    	displayMessage(priceMessage2);
 	    }
+
+        /**
+        * Calculates the price of the order.
+        */
+        private int calculatePrice() {
+            int pr = quantity * 5;
+            return pr;
+        }
+
 
 	    /**
 	     * This method increments the quantity of cups of coffee the user wants
@@ -55,6 +64,15 @@ public class MainActivity extends Activity {
 	        
 	        quantityTextView.setText("" + num);
 	    }
+
+        /**
+        * This method displays the given price on the screen.
+        */
+        private void displayPrice(int number) {
+            TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+
+            priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        }
 
 	    /**
 	     * This method displays the given text on the screen.
