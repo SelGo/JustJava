@@ -10,7 +10,7 @@ public class MainActivity extends Activity {
 		
 	int quantity = 2;
 	
-	 @Override
+	 	@Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_main);
@@ -20,12 +20,19 @@ public class MainActivity extends Activity {
 	     * This method is called when the order button is clicked.
 	     */
 	    public void submitOrder(View view) {
-            int price = calculatePrice();
-	    	String priceMessage = "Total: $" + price;
-	    	String priceMessage2 = priceMessage + "\nThank You!";
-	    	
-	    	displayMessage(priceMessage2);
+            createOrderSummary(calculatePrice());
 	    }
+
+        /**
+        *
+        * @param price of coffee
+        */
+        private void createOrderSummary(int price){
+            String priceMessage = "Name: Peter Tsampakiouris\n";
+            String priceMessage2 = priceMessage + "Quantity:" + quantity + "\n";
+			String priceMessage3 = priceMessage2 + "Total: $" + price + "\nThank you!";
+            displayMessage(priceMessage3);
+        }
 
         /**
         * Calculates the price of the order.
@@ -34,6 +41,7 @@ public class MainActivity extends Activity {
             int pr = quantity * 5;
             return pr;
         }
+
 
 
 	    /**
