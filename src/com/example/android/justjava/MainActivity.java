@@ -1,10 +1,15 @@
 package com.example.android.justjava;
 
+import android.R.id;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
+
 import java.text.NumberFormat;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends Activity {
 		
@@ -20,18 +25,22 @@ public class MainActivity extends Activity {
 	     * This method is called when the order button is clicked.
 	     */
 	    public void submitOrder(View view) {
-            createOrderSummary(calculatePrice());
+	    	CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
+	    	boolean hasWhippedCream = whippedCream.isChecked();
+            createOrderSummary(calculatePrice(), hasWhippedCream);
 	    }
 
         /**
         *
         * @param price of coffee
+        * @param a boolean to check whenever user has chosen the Whipped Cream choice
         */
-        private void createOrderSummary(int price){
-            String priceMessage = "Name: Peter Tsampakiouris\n";
-            String priceMessage2 = priceMessage + "Quantity:" + quantity + "\n";
-			String priceMessage3 = priceMessage2 + "Total: $" + price + "\nThank you!";
-            displayMessage(priceMessage3);
+        private void createOrderSummary(int price, boolean addwhippedCream){
+            String priceMessage = "Name: Peter Tsampakiouris";
+            priceMessage += "\nAdded Whipped Cream? " + addwhippedCream; 
+            priceMessage += "\nQuantity:" + quantity;
+			priceMessage += "\nTotal: $" + price + "\nThank you!";
+            displayMessage(priceMessage);
         }
 
         /**
