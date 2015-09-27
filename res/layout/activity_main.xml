@@ -10,9 +10,23 @@
     android:orientation="vertical"
     tools:context="com.example.android.justjava.MainActivity">
 	
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="TOPPINGS" />
+    
+    <CheckBox 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="Whipped Cream"/>
+
      <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:text="QUANTITY" />
      

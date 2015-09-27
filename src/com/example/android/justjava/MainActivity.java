@@ -42,8 +42,6 @@ public class MainActivity extends Activity {
             return pr;
         }
 
-
-
 	    /**
 	     * This method increments the quantity of cups of coffee the user wants
 	     * @param view
