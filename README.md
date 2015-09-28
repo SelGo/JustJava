@@ -9,6 +9,8 @@ This is a small (and pretty trivial for the moment) Android app developed throug
 
 Usage
 
-User selects a quantity and presses the order button to see the total price
+User inputs name.
+Then user selects additional choices (if any) for his/her coffee.
+Then he/she selects a quantity and finally hits the order button where a summary of the order is displayed.
 
 To run the app go to bin folder and install the JustJava.apk file to your Android device.
