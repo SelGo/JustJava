@@ -1,15 +1,12 @@
 package com.example.android.justjava;
 
-import android.R.id;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
-import java.util.logging.LogRecord;
 
 public class MainActivity extends Activity {
 		
