@@ -28,6 +28,15 @@
 	        android:paddingLeft="32dp"
 	        android:paddingRight="32dp"
 	        android:text="Whipped Cream" />
+	    
+	    <CheckBox
+	        android:id="@+id/chocolate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="32dp"
+	        android:paddingRight="32dp"
+	        android:paddingTop="8dp"
+	        android:text="Chocolate" />
 	
 	    <TextView
 	        android:layout_width="wrap_content"

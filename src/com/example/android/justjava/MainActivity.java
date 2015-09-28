@@ -24,7 +24,11 @@ public class MainActivity extends Activity {
 	    public void submitOrder(View view) {
 	    	CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
 	    	boolean hasWhippedCream = whippedCream.isChecked();
-            createOrderSummary(calculatePrice(), hasWhippedCream);
+	    	
+	    	CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate);
+	    	boolean hasChocolate = chocolate.isChecked();
+	    	
+            createOrderSummary(calculatePrice(), hasWhippedCream, hasChocolate);
 	    }
 
         /**
@@ -32,9 +36,10 @@ public class MainActivity extends Activity {
         * @param price of coffee
         * @param a boolean to check whenever user has chosen the Whipped Cream choice
         */
-        private void createOrderSummary(int price, boolean addwhippedCream){
+        private void createOrderSummary(int price, boolean addwhippedCream, boolean addChocolate){
             String priceMessage = "Name: Peter Tsampakiouris";
-            priceMessage += "\nAdded Whipped Cream? " + addwhippedCream; 
+            priceMessage += "\nAdded Whipped Cream? " + addwhippedCream;
+            priceMessage += "\nAdded Chocolate? " + addChocolate;
             priceMessage += "\nQuantity:" + quantity;
 			priceMessage += "\nTotal: $" + price + "\nThank you!";
             displayMessage(priceMessage);
