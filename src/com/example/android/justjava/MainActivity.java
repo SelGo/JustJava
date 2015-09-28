@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -22,22 +23,29 @@ public class MainActivity extends Activity {
 	     * This method is called when the order button is clicked.
 	     */
 	    public void submitOrder(View view) {
+	    	//Check if user wants whipped cream
 	    	CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
 	    	boolean hasWhippedCream = whippedCream.isChecked();
 	    	
+	    	//Check if user wants chocolate
 	    	CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate);
 	    	boolean hasChocolate = chocolate.isChecked();
 	    	
-            createOrderSummary(calculatePrice(), hasWhippedCream, hasChocolate);
+	    	//Get user's name
+	    	EditText name = (EditText) findViewById(R.id.name_field);
+	    	String value = name.getText().toString();
+	    	
+            createOrderSummary(value, calculatePrice(), hasWhippedCream, hasChocolate);
 	    }
 
         /**
-        *
+        * @param a string for the user's name
         * @param price of coffee
         * @param a boolean to check whenever user has chosen the Whipped Cream choice
+        * @param a boolean to check whenever user has chosen the Chocolate choice
         */
-        private void createOrderSummary(int price, boolean addwhippedCream, boolean addChocolate){
-            String priceMessage = "Name: Peter Tsampakiouris";
+        private void createOrderSummary(String name, int price, boolean addwhippedCream, boolean addChocolate){
+            String priceMessage = "Name: " + name;
             priceMessage += "\nAdded Whipped Cream? " + addwhippedCream;
             priceMessage += "\nAdded Chocolate? " + addChocolate;
             priceMessage += "\nQuantity:" + quantity;
