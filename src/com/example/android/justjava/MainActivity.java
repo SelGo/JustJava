@@ -54,12 +54,32 @@ public class MainActivity extends Activity {
         }
 
         /**
-        * Calculates the price of the order.
-        */
-        private int calculatePrice() {
-            int pr = quantity * 5;
-            return pr;
-        }
+         * Calculates the price of the order.
+         */
+         private int calculatePrice() {
+         	int pr = 0;
+         	
+         	//Check if user wants whipped cream
+ 	    	CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
+ 	    	boolean hasWhippedCream = whippedCream.isChecked();
+ 	    	
+ 	    	//Check if user wants chocolate
+ 	    	CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate);
+ 	    	boolean hasChocolate = chocolate.isChecked();
+ 	    	
+ 	    	if (hasWhippedCream && hasChocolate) {
+ 	    		pr = quantity * (5 + 1 + 2);
+ 	    	} else if (hasWhippedCream) {
+ 	    		pr = quantity * (5 + 1);
+ 	    	} else if (hasChocolate) {
+ 	    		pr = quantity * (5 + 2);
+ 	    	} else {
+ 	    		pr = quantity * 5;
+ 	    	}
+             return pr;
+         }
+        
+        
 
 	    /**
 	     * This method increments the quantity of cups of coffee the user wants
