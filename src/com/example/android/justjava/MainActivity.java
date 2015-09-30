@@ -1,11 +1,14 @@
 package com.example.android.justjava;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -35,7 +38,7 @@ public class MainActivity extends Activity {
 	    	EditText name = (EditText) findViewById(R.id.name_field);
 	    	String value = name.getText().toString();
 	    	
-            createOrderSummary(value, calculatePrice(), hasWhippedCream, hasChocolate);
+            sendEmail(value, calculatePrice(), hasWhippedCream, hasChocolate);
 	    }
 
         /**
@@ -44,13 +47,14 @@ public class MainActivity extends Activity {
         * @param a boolean to check whenever user has chosen the Whipped Cream choice
         * @param a boolean to check whenever user has chosen the Chocolate choice
         */
-        private void createOrderSummary(String name, int price, boolean addwhippedCream, boolean addChocolate){
+        private String createOrderSummary(String name, int price, boolean addwhippedCream, boolean addChocolate){
             String priceMessage = "Name: " + name;
             priceMessage += "\nAdded Whipped Cream? " + addwhippedCream;
             priceMessage += "\nAdded Chocolate? " + addChocolate;
             priceMessage += "\nQuantity:" + quantity;
 			priceMessage += "\nTotal: $" + price + "\nThank you!";
-            displayMessage(priceMessage);
+            
+			return priceMessage;
         }
 
         /**
@@ -117,23 +121,26 @@ public class MainActivity extends Activity {
 	        
 	        quantityTextView.setText("" + num);
 	    }
-
-        /**
-        * This method displays the given price on the screen.
-        */
-        private void displayPrice(int number) {
-            TextView OrderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-
-            OrderSummaryTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-        }
-
-	    /**
-	     * This method displays the given text on the screen.
-	     */
-	    private void displayMessage(String message) {
-	        TextView OrderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-
-			OrderSummaryTextView.setText(message);
-	    }
-
+	    
+	    //Send an email to user with his/her order summary
+	    private void sendEmail(String name, int price, boolean addwhippedCream, boolean addChocolate) {
+	        String[] TO = {""};
+	        String[] CC = {""};
+	        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+	        
+	        emailIntent.setData(Uri.parse("mailto:"));
+	        emailIntent.setType("text/plain");
+	        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+	        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+	        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Order Summary");
+	        emailIntent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(name, price, addwhippedCream, addChocolate));
+	        
+	        try {
+	           startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+	           finish();
+	        }
+	        catch (android.content.ActivityNotFoundException ex) {
+	           Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+	        }
+	     }
 }
