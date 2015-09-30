@@ -88,6 +88,10 @@ public class MainActivity extends Activity {
 	    public void increment(View view) {
 	    	quantity = quantity + 1;
 	    	
+	    	if(quantity > 100) {
+	    		quantity = 1;
+	    	}
+	    	
 	    	displayQuantity(quantity);
 	    }
 	    
@@ -97,6 +101,10 @@ public class MainActivity extends Activity {
 	     */
 	    public void decrement(View view) {
 	    	quantity = quantity - 1;
+	    	
+	    	if(quantity < 1) {
+	    		quantity = 100;
+	    	}
 	    	
 	    	displayQuantity(quantity);
 	    }
