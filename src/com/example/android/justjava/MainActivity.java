@@ -10,11 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
-
 public class MainActivity extends Activity {
 		
-	int quantity = 2;
+	int quantity = 1;
 	
 	 	@Override
 	    protected void onCreate(Bundle savedInstanceState) {
